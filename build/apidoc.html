@@ -1,0 +1,568 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/urturn/grunt-concat-css"
+
+    >grunt-concat-css (v0.3.1)</a>
+</h1>
+<h4>Concat CSS with @import statements at top and relative url preserved.</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.grunt-concat-css">module grunt-concat-css</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.grunt-concat-css.Gruntfile">
+            function <span class="apidocSignatureSpan">grunt-concat-css.</span>Gruntfile
+            <span class="apidocSignatureSpan">(grunt)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.grunt-concat-css.concat_css">
+            function <span class="apidocSignatureSpan">grunt-concat-css.</span>concat_css
+            <span class="apidocSignatureSpan">(grunt)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.grunt-concat-css.Gruntfile">module grunt-concat-css.Gruntfile</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.grunt-concat-css.Gruntfile.Gruntfile">
+            function <span class="apidocSignatureSpan">grunt-concat-css.</span>Gruntfile
+            <span class="apidocSignatureSpan">(grunt)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.grunt-concat-css.concat_css">module grunt-concat-css.concat_css</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.grunt-concat-css.concat_css.concat_css">
+            function <span class="apidocSignatureSpan">grunt-concat-css.</span>concat_css
+            <span class="apidocSignatureSpan">(grunt)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.grunt-concat-css" id="apidoc.module.grunt-concat-css">module grunt-concat-css</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.grunt-concat-css.Gruntfile" id="apidoc.element.grunt-concat-css.Gruntfile">
+        function <span class="apidocSignatureSpan">grunt-concat-css.</span>Gruntfile
+        <span class="apidocSignatureSpan">(grunt)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">Gruntfile = function (grunt) {
+
+  // Project configuration.
+  grunt.initConfig({
+    jshint: {
+      all: [
+        &#x27;Gruntfile.js&#x27;,
+        &#x27;tasks/*.js&#x27;,
+        &#x27;&#x3c;%= nodeunit.tests %&#x3e;&#x27;
+      ],
+      options: {
+        jshintrc: &#x27;.jshintrc&#x27;
+      }
+    },
+
+    // Before generating any new files, remove any previously-created files.
+    clean: {
+      tests: [&#x27;tmp&#x27;]
+    },
+
+    // Configuration to be run (and then tested).
+    concat_css: {
+      default_options: {
+        options: {
+        },
+        files: {
+          &#x27;tmp/default_options.css&#x27;: [&#x27;test/fixtures/test.css&#x27;, &#x27;test/fixtures/import.css&#x27;, &#x27;test/fixtures/component_a/css/style
+.css&#x27;]
+        }
+      },
+      baseDir: {
+        options: {
+          baseDir: &#x27;test/fixtures&#x27;
+        },
+        files: {
+          &#x27;tmp/basedir_options.css&#x27;: [&#x27;test/fixtures/test.css&#x27;, &#x27;test/fixtures/import.css&#x27;]
+        }
+      },
+      rebase_urls: {
+        options: {
+          baseDir: &#x27;test/fixtures&#x27;,
+          assetBaseUrl: &#x27;static/assets/&#x27; // trailing / can be omitted
+        },
+        files: {
+          &#x27;tmp/rebase_urls.css&#x27;: [&#x27;test/fixtures/test.css&#x27;, &#x27;test/fixtures/import.css&#x27;, &#x27;test/fixtures/component_a/css/style.css
+&#x27;]
+        }
+      },
+      no_basedir_options: {
+        options: {
+          assetBaseUrl: &#x27;.&#x27; // trailing / can be omitted
+        },
+        files: {
+          &#x27;tmp/no_basedir_options.css&#x27;: [&#x27;test/fixtures/test.css&#x27;, &#x27;test/fixtures/import.css&#x27;, &#x27;test/fixtures/component_a/css/style
+.css&#x27;]
+        }
+      }
+    },
+
+    // Unit tests.
+    nodeunit: {
+      tests: [&#x27;test/*_test.js&#x27;]
+    }
+
+  });
+
+  // Actually load this plugin&#x27;s task(s).
+  grunt.loadTasks(&#x27;tasks&#x27;);
+
+  // These plugins provide necessary tasks.
+  grunt.loadNpmTasks(&#x27;grunt-contrib-jshint&#x27;);
+  grunt.loadNpmTasks(&#x27;grunt-contrib-clean&#x27;);
+  grunt.loadNpmTasks(&#x27;grunt-contrib-nodeunit&#x27;);
+
+  // Whenever the &#x22;test&#x22; task is run, first clean the &#x22;tmp&#x22; dir, then run this
+  // plugin&#x27;s task(s), then test the result.
+  grunt.registerTask(&#x27;test&#x27;, [&#x27;clean&#x27;, &#x27;concat_css&#x27;, &#x27;nodeunit&#x27;]);
+
+  // By default, lint and run all tests.
+  grunt.registerTask(&#x27;default&#x27;, [&#x27;jshint&#x27;, &#x27;test&#x27;]);
+
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.grunt-concat-css.concat_css" id="apidoc.element.grunt-concat-css.concat_css">
+        function <span class="apidocSignatureSpan">grunt-concat-css.</span>concat_css
+        <span class="apidocSignatureSpan">(grunt)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">concat_css = function (grunt) {
+
+  // Please see the Grunt documentation for more information regarding task
+  // creation: http://gruntjs.com/creating-tasks
+
+  grunt.registerMultiTask(&#x27;concat_css&#x27;, &#x27;Your task description goes here.&#x27;, function() {
+    // Merge task-specific and/or target-specific options with these defaults.
+    var options = this.options({
+      assetBaseUrl: false,
+      debugMode: false
+    });
+
+    // Iterate over all specified file groups.
+    this.files.forEach(function(f) {
+      var importStatements = [];
+      var sources = [];
+
+      var extractImportStatements = function (data){
+        var rex = /@import\s.+\;/gim;
+        var replaceRex = /[\s]*@import\s.+\;/gim;
+        var matches = data.css.match(rex);
+        if(matches &#x26;&#x26; matches.length &#x3e; 0){
+          grunt.log.write(&#x22;Found &#x22; + matches.join(&#x22;, &#x22;));
+          data.imports = matches;
+          data.css = data.css.replace(replaceRex, &#x27;&#x27;);
+        }
+      };
+
+      var rebaseUrls = function (data) {
+        function dirname(csspath){
+          var splits = csspath.split(&#x27;/&#x27;);
+          splits.pop();
+          return splits.join(&#x27;/&#x27;);
+        }
+
+        // Rebase any url(&#x27;someUrl&#x27;) variation
+        function dataTransformUrlFunc(basedir) {
+          var bd = basedir;
+          return function(_, b) {
+            return &#x22;url(&#x27;&#x22;+normalize([bd, b].join(&#x27;/&#x27;))+&#x22;&#x27;)&#x22;;
+          };
+        }
+
+        // Rebase @import &#x27;someUrl&#x27; exception
+        function dataTransformImportAlternateFunc(basedir) {
+          var bd = basedir;
+          return function(_, b) {
+            return &#x22;@import url(&#x27;&#x22;+normalize([bd, b].join(&#x27;/&#x27;))+&#x22;&#x27;)&#x22;;
+          };
+        }
+
+<span class="apidocCodeCommentSpan">        /**
+         * remove upFolder(..) part of an URL
+         */
+</span>        function normalize(url) {
+          var computedParts = [];
+          var parts = url.split(&#x27;/&#x27;);
+          for (var i in parts){
+            if (parts[i] === &#x27;..&#x27;) {
+              computedParts.pop();
+            } else {
+              computedParts.push(parts[i]);
+            }
+          }
+          return computedParts.join(&#x27;/&#x27;);
+        }
+
+        function computeBaseUrl() {
+          var re = new RegExp(&#x27;(?:^&#x27;+ options.baseDir +&#x27;\/?)?(.*)\/[^\/]+$&#x27;);
+          var re_no_base_dir = /(.*)\/[^\/]+$/;
+          var relativePath = options.baseDir ? data.path.replace(re, &#x27;$1&#x27;) : data.path.replace(re_no_base_dir, &#x27;$1&#x27;);
+          return options.assetBaseUrl.replace(/\/$/, &#x27;&#x27;) + (relativePath ? &#x27;/&#x27; + relativePath : &#x27;&#x27;);
+        }
+
+        var baseUrl = computeBaseUrl();
+
+        data.css = data.css.replace(/url\([&#x27;\&#x22;]?([^&#x27;\&#x22;\:]+)[&#x27;\&#x22;]?\)/gm, dataTransformUrlFunc(baseUrl));
+        data.css = data.css.replace(/@import\s+[&#x27;\&#x22;]([^&#x27;\&#x22;\:]+)[&#x27;\&#x22;]/gm, dataTransformImportAlternateFunc(baseUrl));
+      };
+
+      var imports = &#x22;&#x22;;
+      var cssFragments = [];
+
+      options.debugMode &#x26;&#x26; console.log(f.src, f.dest);
+      // Concat specified files.
+      var results = f.src.map(function(filepath) {
+        // Read file source.
+        var data = {
+          path: filepath,
+          css: grunt.file.read(filepath)
+        };
+        options.debugMode &#x26;&#x26; console.log(data);
+        if ([false, undefined].indexOf(options.assetBaseUrl) === -1) {
+          rebaseUrls(data);
+        }
+        extractImportStatements(data);
+        if (data.imports) {
+          imports += data.imports.join(&#x22;\n&#x22;) + &#x22;\n&#x22;;
+        }
+        cssFragments.push(data.css.replace(/(^\s+|\s+$)/g,&#x27;&#x27;));
+        return data;
+      });
+
+      // Write the destination file.
+      grunt.file.write(f.dest, imports + cssFragments.join(&#x27;\n&#x27;) + &#x27;\n&#x27;);
+
+      // Print a success message.
+      grunt.log.writeln(&#x27;File &#x22;&#x27; + f.dest + &#x27;&#x22; created.&#x27;);
+    });
+  });
+
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.grunt-concat-css.Gruntfile" id="apidoc.module.grunt-concat-css.Gruntfile">module grunt-concat-css.Gruntfile</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.grunt-concat-css.Gruntfile.Gruntfile" id="apidoc.element.grunt-concat-css.Gruntfile.Gruntfile">
+        function <span class="apidocSignatureSpan">grunt-concat-css.</span>Gruntfile
+        <span class="apidocSignatureSpan">(grunt)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">Gruntfile = function (grunt) {
+
+  // Project configuration.
+  grunt.initConfig({
+    jshint: {
+      all: [
+        &#x27;Gruntfile.js&#x27;,
+        &#x27;tasks/*.js&#x27;,
+        &#x27;&#x3c;%= nodeunit.tests %&#x3e;&#x27;
+      ],
+      options: {
+        jshintrc: &#x27;.jshintrc&#x27;
+      }
+    },
+
+    // Before generating any new files, remove any previously-created files.
+    clean: {
+      tests: [&#x27;tmp&#x27;]
+    },
+
+    // Configuration to be run (and then tested).
+    concat_css: {
+      default_options: {
+        options: {
+        },
+        files: {
+          &#x27;tmp/default_options.css&#x27;: [&#x27;test/fixtures/test.css&#x27;, &#x27;test/fixtures/import.css&#x27;, &#x27;test/fixtures/component_a/css/style
+.css&#x27;]
+        }
+      },
+      baseDir: {
+        options: {
+          baseDir: &#x27;test/fixtures&#x27;
+        },
+        files: {
+          &#x27;tmp/basedir_options.css&#x27;: [&#x27;test/fixtures/test.css&#x27;, &#x27;test/fixtures/import.css&#x27;]
+        }
+      },
+      rebase_urls: {
+        options: {
+          baseDir: &#x27;test/fixtures&#x27;,
+          assetBaseUrl: &#x27;static/assets/&#x27; // trailing / can be omitted
+        },
+        files: {
+          &#x27;tmp/rebase_urls.css&#x27;: [&#x27;test/fixtures/test.css&#x27;, &#x27;test/fixtures/import.css&#x27;, &#x27;test/fixtures/component_a/css/style.css
+&#x27;]
+        }
+      },
+      no_basedir_options: {
+        options: {
+          assetBaseUrl: &#x27;.&#x27; // trailing / can be omitted
+        },
+        files: {
+          &#x27;tmp/no_basedir_options.css&#x27;: [&#x27;test/fixtures/test.css&#x27;, &#x27;test/fixtures/import.css&#x27;, &#x27;test/fixtures/component_a/css/style
+.css&#x27;]
+        }
+      }
+    },
+
+    // Unit tests.
+    nodeunit: {
+      tests: [&#x27;test/*_test.js&#x27;]
+    }
+
+  });
+
+  // Actually load this plugin&#x27;s task(s).
+  grunt.loadTasks(&#x27;tasks&#x27;);
+
+  // These plugins provide necessary tasks.
+  grunt.loadNpmTasks(&#x27;grunt-contrib-jshint&#x27;);
+  grunt.loadNpmTasks(&#x27;grunt-contrib-clean&#x27;);
+  grunt.loadNpmTasks(&#x27;grunt-contrib-nodeunit&#x27;);
+
+  // Whenever the &#x22;test&#x22; task is run, first clean the &#x22;tmp&#x22; dir, then run this
+  // plugin&#x27;s task(s), then test the result.
+  grunt.registerTask(&#x27;test&#x27;, [&#x27;clean&#x27;, &#x27;concat_css&#x27;, &#x27;nodeunit&#x27;]);
+
+  // By default, lint and run all tests.
+  grunt.registerTask(&#x27;default&#x27;, [&#x27;jshint&#x27;, &#x27;test&#x27;]);
+
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.grunt-concat-css.concat_css" id="apidoc.module.grunt-concat-css.concat_css">module grunt-concat-css.concat_css</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.grunt-concat-css.concat_css.concat_css" id="apidoc.element.grunt-concat-css.concat_css.concat_css">
+        function <span class="apidocSignatureSpan">grunt-concat-css.</span>concat_css
+        <span class="apidocSignatureSpan">(grunt)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">concat_css = function (grunt) {
+
+  // Please see the Grunt documentation for more information regarding task
+  // creation: http://gruntjs.com/creating-tasks
+
+  grunt.registerMultiTask(&#x27;concat_css&#x27;, &#x27;Your task description goes here.&#x27;, function() {
+    // Merge task-specific and/or target-specific options with these defaults.
+    var options = this.options({
+      assetBaseUrl: false,
+      debugMode: false
+    });
+
+    // Iterate over all specified file groups.
+    this.files.forEach(function(f) {
+      var importStatements = [];
+      var sources = [];
+
+      var extractImportStatements = function (data){
+        var rex = /@import\s.+\;/gim;
+        var replaceRex = /[\s]*@import\s.+\;/gim;
+        var matches = data.css.match(rex);
+        if(matches &#x26;&#x26; matches.length &#x3e; 0){
+          grunt.log.write(&#x22;Found &#x22; + matches.join(&#x22;, &#x22;));
+          data.imports = matches;
+          data.css = data.css.replace(replaceRex, &#x27;&#x27;);
+        }
+      };
+
+      var rebaseUrls = function (data) {
+        function dirname(csspath){
+          var splits = csspath.split(&#x27;/&#x27;);
+          splits.pop();
+          return splits.join(&#x27;/&#x27;);
+        }
+
+        // Rebase any url(&#x27;someUrl&#x27;) variation
+        function dataTransformUrlFunc(basedir) {
+          var bd = basedir;
+          return function(_, b) {
+            return &#x22;url(&#x27;&#x22;+normalize([bd, b].join(&#x27;/&#x27;))+&#x22;&#x27;)&#x22;;
+          };
+        }
+
+        // Rebase @import &#x27;someUrl&#x27; exception
+        function dataTransformImportAlternateFunc(basedir) {
+          var bd = basedir;
+          return function(_, b) {
+            return &#x22;@import url(&#x27;&#x22;+normalize([bd, b].join(&#x27;/&#x27;))+&#x22;&#x27;)&#x22;;
+          };
+        }
+
+<span class="apidocCodeCommentSpan">        /**
+         * remove upFolder(..) part of an URL
+         */
+</span>        function normalize(url) {
+          var computedParts = [];
+          var parts = url.split(&#x27;/&#x27;);
+          for (var i in parts){
+            if (parts[i] === &#x27;..&#x27;) {
+              computedParts.pop();
+            } else {
+              computedParts.push(parts[i]);
+            }
+          }
+          return computedParts.join(&#x27;/&#x27;);
+        }
+
+        function computeBaseUrl() {
+          var re = new RegExp(&#x27;(?:^&#x27;+ options.baseDir +&#x27;\/?)?(.*)\/[^\/]+$&#x27;);
+          var re_no_base_dir = /(.*)\/[^\/]+$/;
+          var relativePath = options.baseDir ? data.path.replace(re, &#x27;$1&#x27;) : data.path.replace(re_no_base_dir, &#x27;$1&#x27;);
+          return options.assetBaseUrl.replace(/\/$/, &#x27;&#x27;) + (relativePath ? &#x27;/&#x27; + relativePath : &#x27;&#x27;);
+        }
+
+        var baseUrl = computeBaseUrl();
+
+        data.css = data.css.replace(/url\([&#x27;\&#x22;]?([^&#x27;\&#x22;\:]+)[&#x27;\&#x22;]?\)/gm, dataTransformUrlFunc(baseUrl));
+        data.css = data.css.replace(/@import\s+[&#x27;\&#x22;]([^&#x27;\&#x22;\:]+)[&#x27;\&#x22;]/gm, dataTransformImportAlternateFunc(baseUrl));
+      };
+
+      var imports = &#x22;&#x22;;
+      var cssFragments = [];
+
+      options.debugMode &#x26;&#x26; console.log(f.src, f.dest);
+      // Concat specified files.
+      var results = f.src.map(function(filepath) {
+        // Read file source.
+        var data = {
+          path: filepath,
+          css: grunt.file.read(filepath)
+        };
+        options.debugMode &#x26;&#x26; console.log(data);
+        if ([false, undefined].indexOf(options.assetBaseUrl) === -1) {
+          rebaseUrls(data);
+        }
+        extractImportStatements(data);
+        if (data.imports) {
+          imports += data.imports.join(&#x22;\n&#x22;) + &#x22;\n&#x22;;
+        }
+        cssFragments.push(data.css.replace(/(^\s+|\s+$)/g,&#x27;&#x27;));
+        return data;
+      });
+
+      // Write the destination file.
+      grunt.file.write(f.dest, imports + cssFragments.join(&#x27;\n&#x27;) + &#x27;\n&#x27;);
+
+      // Print a success message.
+      grunt.log.writeln(&#x27;File &#x22;&#x27; + f.dest + &#x27;&#x22; created.&#x27;);
+    });
+  });
+
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
